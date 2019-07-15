@@ -1,6 +1,6 @@
 ---
 
-- include_role: name=yourlabs.remember tasks_from=questions
+- include_role: name=yourlabs.remember
 
 - name: Set hostname="{{ fqdn.split('.')[0] }}"
   set_fact:

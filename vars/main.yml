@@ -2,7 +2,7 @@
 
 rolename: yourlabs.fqdn
 rolevars:
-  fqdn:
+  - name: fqdn
     question: |
       What is the host FQDN ?
       A FQDN consists of the short hostname, followed by the DNS domain name.

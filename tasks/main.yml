@@ -11,6 +11,7 @@
     path: /etc/hosts
     regexp: '^127\.0\.0\.1 (.*)$'
     line: 127.0.0.1 {{ fqdn }} \1
+    backrefs: yes
     owner: root
     group: root
     mode: '0644'

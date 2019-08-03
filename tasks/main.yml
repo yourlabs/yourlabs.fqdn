@@ -5,8 +5,8 @@
 - name: Set ipv4 fqdn in /etc/hosts
   lineinfile:
     path: /etc/hosts
-    regexp: '^127\.0\.0\.1 ({{ fqdn }} )*(.*)$'
-    line: 127.0.0.1 {{ fqdn }} \2
+    regexp: '^127\.0\.0\.1 ({{ fqdn }} )*({{ fqdn.split(".")[0] }} )*(.*)$'
+    line: 127.0.0.1 {{ fqdn }} {{ fqdn.split(".")[0] }} \3
     backrefs: yes
     owner: root
     group: root
@@ -15,8 +15,8 @@
 - name: Set ipv6 fqdn in /etc/hosts
   lineinfile:
     path: /etc/hosts
-    regexp: '^::1 ({{ fqdn }} )*(.*)$'
-    line: ::1 {{ fqdn }} \2
+    regexp: '^::1 ({{ fqdn }} )*({{ fqdn.split(".")[0] }} )*(.*)$'
+    line: ::1 {{ fqdn }} {{ fqdn.split(".")[0] }} \3
     backrefs: yes
     owner: root
     group: root

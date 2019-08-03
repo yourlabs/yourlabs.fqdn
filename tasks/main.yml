@@ -2,11 +2,21 @@
 
 - include_role: name=yourlabs.remember  # get user to tell variables
 
-- name: Set fqdn in /etc/hosts
+- name: Set ipv4 fqdn in /etc/hosts
   lineinfile:
     path: /etc/hosts
-    regexp: '^127\.0\.0\.1 (.*)$'
-    line: 127.0.0.1 {{ fqdn }} \1
+    regexp: '^127\.0\.0\.1 ({{ fqdn }} )*(.*)$'
+    line: 127.0.0.1 {{ fqdn }} \2
+    backrefs: yes
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Set ipv6 fqdn in /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^::1 ({{ fqdn }} )*(.*)$'
+    line: ::1 {{ fqdn }} \2
     backrefs: yes
     owner: root
     group: root
@@ -21,6 +31,4 @@
     mode: '0644'
 
 - name: Remember this role was deployed successfully on this host
-  remember:
-    extra:
-      state: success
+  include_role: name=yourlabs.remember tasks_from=success
